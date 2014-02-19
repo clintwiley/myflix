@@ -24,7 +24,7 @@ describe 'search_by_title' do
   end
   it "returns an array of videos for partial matches by created_at" do
     futurama = Video.create(title: 'Futurama', description: 'Funny show')
-    back_to_future = Video.create(title: 'Back to Future', description: 'A time travel movie.')
+    back_to_future = Video.create(title: 'Back to Future', description: 'A time travel movie.', created_at: 1.day.ago)
     expect(Video.search_by_title("futu")).to eq([futurama, back_to_future])
   end
   it "returns an empty array for empty search term" do
