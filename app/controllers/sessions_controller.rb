@@ -5,14 +5,14 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.where(email: params[:email]).first
-    if user && user.authenticate(params[:password])
+    @user = User.where(email: params[:user][:email]).first
+    if @user && @user.authenticate(params[:user][:password])
       flash[:success] = 'You are now signed in.'
       session[:user_id] = @user.id
       redirect_to home_path
     else
-      flash[:error] = "Your email or password is incorrect."
-      render :new
+      flash[:danger] = "Your email or password is incorrect."
+      redirect_to sign_in_path
     end
   end
 
