@@ -1,0 +1,5 @@
+%h2 Search Results:
+%hr
+- @results.each do |video|
+	= link_to video do
+		%img(src="#{video.small_cover_url}")
